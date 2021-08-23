@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
+import { useMutation } from "@apollo/client";
 import { ADD_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
-import { useMutation } from "@apollo/client";
+
 
 
 const SignupForm = () => {
@@ -31,7 +32,7 @@ const SignupForm = () => {
 
     try {
       const {data} = await addUser({
-        variables: {...userFormData}
+        variables: {...userFormData},
       });
       Auth.login(data.addUser.token);
     }catch (err) {
@@ -45,7 +46,7 @@ const SignupForm = () => {
       password: '',
     });
   };
-  
+
   return (
     <>
       {/* This is needed for the validation functionality above */}
